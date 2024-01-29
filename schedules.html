@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="bootstrap.css">
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="popper.js"></script>
+	<script type="text/javascript" src="bootstrap.js"></script>	
+	<link rel="stylesheet" type="text/css" href="Master.css">
+    <link rel="stylesheet" type="text/css" href="trainingStudio.css">
+
+    <script>
+        $(document).ready
+        (function ($) {
+	
+	"use strict";
+
+	$(function() {
+        $("#tabs").tabs();
+    });
+
+	$(window).scroll(function() {
+	  var scroll = $(window).scrollTop();
+	  var box = $('.header-text').height();
+	  var header = $('header').height();
+
+	  if (scroll >= box - header) {
+	    $("header").addClass("background-header");
+	  } else {
+	    $("header").removeClass("background-header");
+	  }
+	});
+	
+
+	$('.schedule-filter li').on('click', function() {
+        var tsfilter = $(this).data('tsfilter');
+        $('.schedule-filter li').removeClass('active');
+        $(this).addClass('active');
+        if (tsfilter == 'all') {
+            $('.schedule-table').removeClass('filtering');
+            $('.ts-item').removeClass('show');
+        } else {
+            $('.schedule-table').addClass('filtering');
+        }
+        $('.ts-item').each(function() {
+            $(this).removeClass('show');
+            if ($(this).data('tsmeta') == tsfilter) {
+                $(this).addClass('show');
+            }
+        });
+    });
+})
+
+    </script>
+    <title>Schedules</title>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-5 col-sm-5 col-md-6 col-lg-6 col xl-6">
+                    <h1>TRAINING<span>STUDIO</span></h1>
+                </div>
+
+                <div class="col-7 col-sm-7 col-md-6 col-lg-6 col-xl-6">
+                    <form class="form-inline">
+                        <div class="input-group">
+                            <input class="form-control mr-sm-2" type="text" placeholder="Search....">
+                            <button class="btn btn-success" type="submit">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav class="navbar navbar-expand-md bg-dark sticky-top navbar-dark">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item "><a class="nav-link"  href="index.html" style="width: 110px; text-align: center;">HOME</a></li>
+
+                    <li class="nav-item"><a href="classes.html" class="nav-link">CLASSES</a></li>
+
+                    <li class="nav-item active"  style="border-bottom: 3px solid #77b300; font-size: 17px;"><a href="schedules.html" class="nav-link">SCHEDULES</a></li>
+
+                    <li class="nav-item"><a href="instructors.html" class="nav-link">INSTRUCTORS</a></li>
+
+                    <li class="nav-item"><a href="contact.html" class="nav-link">CONTACT</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section>
+        <div class="container content">
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                    <video autoplay muted loop width="100%">
+                        <source src="images/gym-video-2.mp4" type="video/mp4">
+                    </video>                    
+                </div>
+            </div>
+
+
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-5">
+                <p style="font-size: 23px; line-height: 28px; text-align: center;"><b></b> <b><i>“To keep the body in good health is a duty, otherwise we shall not be able to keep <br> our mind strong and clear.”</i></b> – Buddha  <br>
+                </p>
+            </div>
+
+            
+            <div class="row class-heading pt-5">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                    <h2>- OUR <span>SCHEDULES -</span></h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="container" id="schedule">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="filters">
+                        <ul class="schedule-filter">
+                            <li class="active" data-tsfilter="monday">
+                                Monday                                
+                            </li>
+                            <li data-tsfilter="tuesday" class>
+                                Tuesday
+                                
+                            </li>
+                            <li data-tsfilter="wednesday" class>
+                                Wednesday
+                                
+                            </li>
+                            <li data-tsfilter="thursday" class>
+                                Thursday
+                                
+                            </li>
+                            <li data-tsfilter="friday" class>
+                                Friday                         
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-12 offset-lg-1">
+                    <div class="schedule-table filtering">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td class="day-time">Fittness Class</td>
+                                    <td class="monday ts-item show" data-tsmeta="monday">10:00AM - 11:30AM</td>
+                                    <td class="tuesday ts-item" data-tsmeta="tuesday">2:00PM - 3:30PM</td>
+                                    <td>William Stewart</td>
+                                </tr>
+
+                                <tr>
+                                    <td class="day-time">Muscle Training</td>
+                                    <td class="friday ts-item" data-tsmeta="friday">10:00AM - 11:30AM</td>
+                                    <td class="thursday friday ts-item" data-tsmeta="thursday">2:00PM - 3:30PM</td>
+                                    <td>Paul Newman</td>
+                                </tr>
+
+                                <tr>
+                                    <td class="day-time">Body Building</td>
+                                    <td class="tuesday ts-item" data-tsmeta="tuesday">10:00AM - 11:30AM</td>
+                                    <td class="monday ts-item show" data-tsmeta="monday">2:00PM - 3:30PM</td>
+                                    <td>Boyd Harris</td>
+                                </tr>
+
+                                <tr>
+                                    <td class="day-time">Yoga Training</td>
+                                    <td class="wednesday ts-item" data-tsmeta="wednesday">10:00AM - 11:30AM</td>
+                                    <td class="friday ts-item" data-tsmeta="friday">2:00PM - 3:30PM</td>
+                                    <td>Hector Daigle</td>
+                                </tr>
+
+                                <tr>
+                                    <td class="day-time">Advanced Training</td>
+                                    <td class="thursday ts-item" data-tsmeta="thursday">10:00AM - 11:30AM</td>
+                                    <td class="wednesday ts-item" data-tsmeta="wednesday">2:00PM - 3:30PM</td>
+                                    <td>Bret Bowers</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <br><br><br>
+    <footer class="bg-dark">
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <h4>@ 2021 Healty Lifestyle . All Copy Rights Reserved. </h4>
+            </div>
+        </div>
+    </footer>
+
+
+
+</body>
+</html>
